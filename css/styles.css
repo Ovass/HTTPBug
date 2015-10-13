@@ -1,0 +1,523 @@
+@font-face {
+    font-family: "FiraSans";
+    src: url( "../assets/fonts/firasans/FiraSans-Book.woff" ) format( "woff" );
+}
+@font-face {
+    font-family: "FiraMono";
+    src: url( "../assets/fonts/firamono/FiraMono-Regular.woff" ) format( "woff" );
+}
+
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: white;
+    box-sizing: border-box;
+    font: normal 62.5% FiraSans, sans-serif;
+    color: #444;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: optimizelegibility;
+    overflow: hidden;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    outline: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+header {
+    position: relative;
+    height: 32px;
+    -webkit-app-region: drag;
+}
+
+/* darwin buttons */
+
+.darwin header .buttons {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: no-drag;
+}
+
+.darwin header .buttons a {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    background: #E5E5E5;
+    border: 1px solid #D3D3D3;
+    border-radius: 6px;
+    box-shadow: 0px 1px 1px 0px rgba( 234, 234, 234, 0.50 );
+    font-size: 0;
+    cursor: default;
+}
+.darwin.enabled header .buttons a:hover {
+    box-shadow: 0px 1px 1px 0px rgba( 195, 198, 201, 0.50 );
+}
+.darwin.enabled header .buttons a:hover:active {
+    cursor: default;
+    -webkit-filter: brightness( 92% );
+}
+
+.darwin.enabled header .buttons a[id="close"] {
+    background-color: #FF5F52;
+    border-color: #E33E32;
+}
+
+.darwin.enabled header .buttons a[id="minify"] {
+    background-color: #FFBE05;
+    border-color: #E2A100;
+}
+
+.darwin.enabled header .buttons a[id="magnify"] {
+    background-color: #15CC35;
+    border-color: #17B230;
+}
+
+.darwin.enabled header .buttons:hover a[id="close"] {
+    background-image: url( ../assets/img/close.png );
+}
+
+.darwin.enabled header .buttons:hover a[id="minify"] {
+    background-image: url( ../assets/img/minimize.png );
+}
+
+.darwin.enabled header .buttons:hover a[id="magnify"] {
+    background-image: url( ../assets/img/fullscreen.png );
+}
+
+.darwin.enabled header .buttons:hover a[id="magnify"].enabled {
+    background-image: url( ../assets/img/fullscreenclose.png );
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx) {
+    .darwin.enabled header .buttons:hover a[id="close"] {
+        background-image: url( ../assets/img/close@2x.png );
+        background-size: 10px 10px;
+    }
+
+    .darwin.enabled header .buttons:hover a[id="minify"] {
+        background-image: url( ../assets/img/minimize@2x.png );
+        background-size: 10px 10px;
+    }
+
+    .darwin.enabled header .buttons:hover a[id="magnify"] {
+        background-image: url( ../assets/img/fullscreen@2x.png );
+        background-size: 10px 10px;
+    }
+
+    .darwin.enabled header .buttons:hover a[id="magnify"].enabled {
+        background-image: url( ../assets/img/fullscreenclose@2x.png );
+        background-size: 10px 10px;
+    }
+}
+
+/* windows buttons */
+
+.windows header .buttons {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    display: flex;
+    flex: 0 1 auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+    -webkit-app-region: no-drag;
+}
+
+.windows header .buttons a {
+    display: block;
+    min-width: 34px;
+    height: 25px;
+    margin-left: 1px;
+    background-color: white;
+    font-size: 0;
+    -webkit-transition: -webkit-filter 0.3s;
+}
+
+.windows header .buttons a:hover {
+    -webkit-transition: -webkit-filter 0s;
+    -webkit-filter: brightness( 0.9 );
+}
+
+.windows header .buttons a:hover:active {
+    -webkit-filter: brightness( 0.8 );
+}
+
+.windows header .buttons a i {
+    display: block;
+    height: 25px;
+    background-repeat: no-repeat;
+    -webkit-filter: brightness( 0.3 );
+}
+
+.windows header .buttons a[id="close"] {
+    order: 2;
+    min-width: 58px;
+    background-color: #C75050;
+    background-image: url( ../assets/img/windows-close.png );
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 -1px rgba( 255, 255, 255, 0.4 );
+}
+
+.windows header .buttons a[id="close"]:hover {
+    -webkit-filter: saturate( 120% );
+}
+
+.windows header .buttons a[id="close"]:hover:active {
+    -webkit-filter: brightness(0.8);
+}
+
+.windows header .buttons a[id="minify"] {
+    order: 0;
+}
+
+.windows header .buttons a[id="minify"] i {
+    background-image: url( ../assets/img/windows-minimize.png );
+    background-position: 50% 18px;
+    -webkit-filter: brightness(0.3);
+}
+
+.windows header .buttons a[id="magnify"] {
+    order: 1;
+}
+
+.windows header .buttons a[id="magnify"] i {
+    background-image: url( ../assets/img/windows-fullscreen.png );
+    background-position: center;
+    -webkit-filter: brightness(0.3);
+}
+
+.windows header .buttons a[id="magnify"].enabled i {
+    background-image: url( ../assets/img/windows-fullscreenclose.png );
+    background-position: center;
+    -webkit-filter: brightness(0.3);
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx) {
+    .windows header .buttons a[id="close"] {
+
+    }
+
+    .windows header .buttons a[id="minify"] i {
+        background-image: url( ../assets/img/windows-minimize@2x.png );
+        background-size: 14px 2px;
+    }
+
+    .windows header .buttons a[id="magnify"] i {
+        background-image: url( ../assets/img/windows-fullscreen@2x.png );
+        background-size: 14px 12px;
+    }
+
+    .windows header .buttons a[id="magnify"].enabled i {
+        background-image: url( ../assets/img/windows-fullscreenclose@2x.png );
+        background-size: 14px 12px;
+    }
+}
+
+
+/* ----- */
+
+header h1 {
+    margin: 0 auto;
+    padding: 1px 0 0;
+    opacity: .5;
+    font: normal 1.2rem/32px FiraSans;
+    color: #444;
+    text-align: center;
+    cursor: default;
+}
+
+.enabled h1 {
+    opacity: 1;
+}
+
+.drop-helper {
+    display: none;
+    position: absolute;
+    top: 32px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background: white;
+    pointer-events: none;
+}
+
+body.filedrag .drop-helper {
+    display: block;
+}
+
+.drop-helper:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    border: 3px dashed #22b8eb;
+    border-radius: 20px;
+}
+
+.drop-helper strong {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 32px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    font: bold 2.4rem/32px FiraSans, sans-serif;
+    color: #22b8eb;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 5px 10px 10px;
+    opacity: .85;
+}
+
+.enabled form {
+    opacity: 1;
+}
+
+fieldset.main-parameters {
+    display: flex;
+    border: 0;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+fieldset.main-parameters .params {
+    position: relative;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+fieldset.main-parameters .params:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+fieldset.main-parameters .params .root-selector {
+    flex: 1;
+    display: inline-flex;
+    align-items: left;
+    justify-content: left;
+}
+
+fieldset.main-parameters .params .root-selector label {
+    width: 60px;
+    font: normal 1.4rem/32px FiraSans, sans-serif;
+    text-align: right;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .params .root-selector .input-holder {
+    position: relative;
+    flex: 1;
+    margin-left: 5px;
+    padding: 8px 5px 0;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    font: normal 1.4rem/1 FiraMono, monospace;
+    color: #444;
+    text-align: left;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .params .root-selector .input-holder button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #d3d3d3;
+    padding: 0 10px;
+    font: normal 1.2rem/26px FiraSans, sans-serif;
+    color: #444;
+    cursor: pointer;
+}
+
+fieldset.main-parameters .params .root-selector .input-holder span {
+    display: inline-block;
+    width: 325px;
+    overflow: hidden;
+    color: #777;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+fieldset.main-parameters .params .port-selector {
+    width: 140px;
+    text-align: right;
+}
+
+fieldset.main-parameters .params .port-selector label {
+    display: inline-block;
+    font: normal 1.4rem FiraSans, sans-serif;
+    text-align: right;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .params .port-selector input {
+    margin-left: 5px;
+    padding: 4px 5px;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    font: normal 1.4rem/1 FiraMono, monospace;
+    color: #444;
+    text-align: right;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .link-holder {
+    width: 460px;
+    padding: 10px 0 5px 65px;
+    opacity: 0;
+    font: normal 1.25rem/1 FiraSans, sans-serif;
+    text-align: left;
+    transition: opacity 1s ease-in-out;
+}
+
+fieldset.main-parameters .link-holder span {
+    cursor: default;
+}
+
+fieldset.main-parameters .link-holder a {
+    color: #22b8eb;
+}
+
+.ready fieldset.main-parameters .link-holder {
+    opacity: 1;
+}
+
+fieldset.main-parameters .params .autoindex-option {
+    position: absolute;
+    right: 0;
+    bottom: -25px;
+}
+
+fieldset.main-parameters .params .autoindex-option label {
+    cursor: pointer;
+}
+
+fieldset.main-parameters .params .autoindex-option label input {
+    position: absolute;
+    left: -9999rem;
+}
+
+fieldset.main-parameters .params .autoindex-option label span {
+    position: relative;
+    font: normal 1.25rem/1 FiraSans, sans-serif;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .params .autoindex-option label span:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 8px 0 0;
+    background: white;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+fieldset.main-parameters .params .autoindex-option label input:checked + span:after {
+    content: "✔";
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    font: normal 2.4rem/1 FiraSans, sans-serif;
+    color: #22b8eb;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+[id="logs"] {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 5px;
+}
+
+[id="logs"] .logs-box {
+    position: relative;
+    flex: 1;
+    cursor: default;
+}
+
+[id="logs"] .logs-box ul {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+[id="logs"] .logs-box ul li {
+    padding: 5px;
+}
+
+[id="logs"] .logs-box ul li time {
+    display: inline-block;
+    margin-right: 10px;
+    font: normal 1.2rem/1 FiraSans, sans-serif;
+    color: #666;
+}
+
+[id="logs"] .logs-box ul li span {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 2px 5px 0;
+    background: #999;
+    border-radius: 2px;
+    font: normal 1.1rem/1 FiraSans, sans-serif;
+    color: white;
+}
+
+[id="logs"] .logs-box ul li strong {
+    font: normal 1.2rem/1 FiraSans, sans-serif;
+}
+
+[id="logs"] .logs-box ul li:nth-child(even) {
+    background: #efefef;
+}
+
+[id="logs"] .tools {
+    padding: 5px 0 0;
+    text-align: right;
+}
+
+[id="logs"] .tools a {
+    font: normal 1.1rem/1 FiraSans, sans-serif;
+    color: #22b8eb;
+    text-decoration: none;
+}

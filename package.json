@@ -1,0 +1,49 @@
+{
+    "name": "HTTPBug",
+    "version": "0.0.1",
+    "description": "A simple static webserver, with a GUI.",
+    "main": "app.js",
+    "homepage": "https://ovass.github.io/HTTPBug",
+    "contributors": [
+        {
+            "name": "Ovass",
+            "email": "hello@ovass.com",
+            "url": "http://ovass.com"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ovass/HTTPBug.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ovass/HTTPBug/issues"
+    },
+    "licenses": [
+        {
+            "type": "UNLICENSE",
+            "url": "http://unlicense.org/"
+        }
+    ],
+    "electron-version": "0.32.1",
+    "dependencies": {
+        "empty-port": "0.0.1",
+        "express": "^4.13.3",
+        "express-handlebars": "^2.0.1",
+        "human-size": "^1.1.0",
+        "lodash": "^3.10.1",
+        "mimetype": "0.0.7",
+        "moment": "^2.10.6"
+    },
+    "devDependencies": {
+        "electron-prebuilt": "^0.32.1",
+        "grunt": "^0.4.5",
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-compress": "^0.13.0",
+        "grunt-contrib-copy": "^0.8.1",
+        "grunt-electron": "^2.0.0",
+        "grunt-newer": "^1.1.1",
+        "grunt-rcedit": "^0.3.3",
+        "grunt-shell": "^1.1.2",
+        "load-grunt-tasks": "^3.2.0"
+    }
+}
